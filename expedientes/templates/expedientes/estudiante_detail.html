@@ -1,12 +1,32 @@
-<h2>{{ object.nombre }} ({{ object.matricula }})</h2>
+<h2>Expediente de {{ object.nombre }}</h2>
+
 <h3>Documentos:</h3>
 <ul>
-{% for doc in object.documentos.all %}
-  <li><a href="{{ doc.archivo.url }}">{{ doc.archivo.name }}</a></li>
-{% empty %}
-  <li>No hay documentos</li>
-{% endfor %}
+  {% for doc in object.documentos.all %}
+    <li>
+      {% if doc.archivo %}
+        <a href="{{ doc.archivo.url }}">{{ doc.archivo.name }}</a>
+      {% else %}
+        <em>Sin archivo</em>
+      {% endif %}
+
+      {% if doc.pk %}
+        | <a href="{% url 'eliminar_documento' object.pk doc.pk %}">Eliminar</a>
+      {% endif %}
+    </li>
+  {% empty %}
+    <li>No hay documentos subidos.</li>
+  {% endfor %}
 </ul>
 
-<a href="{% url 'subir_documentos' object.pk %}">Subir Documentos</a>
-<a href="{% url 'expediente_list' %}">Volver</a>
+<hr>
+
+<h3>Agregar nuevo documento</h3>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Subir</button>
+</form>
+<br><br><br>
+<a href="{% url 'expediente_list' %}" class="btn btn-secondary">⬅ Volver</a>
+

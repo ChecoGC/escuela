@@ -1,0 +1,14 @@
+<h2>Eliminar documento</h2>
+
+<p>¿Seguro que quieres eliminar el archivo <strong>{{ documento.archivo.name }}</strong> 
+del estudiante <strong>{{ documento.estudiante.nombre }}</strong>?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" style="background:red; color:white; padding:5px 10px; border:none; border-radius:5px;">
+        Sí, eliminar
+    </button>
+    <a href="{% url 'estudiante_detail' documento.estudiante.pk %}" style="margin-left:10px;">
+        Cancelar
+    </a>
+</form>

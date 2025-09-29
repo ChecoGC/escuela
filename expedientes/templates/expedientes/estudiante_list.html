@@ -3,9 +3,10 @@
 <ul>
 {% for estudiante in object_list %}
   <li>
-    <a href="{% url 'expediente_detail' estudiante.pk %}">
+    <a href="{% url 'estudiante_detail' estudiante.pk %}">
       {{ estudiante.nombre }} ({{ estudiante.matricula }})
     </a>
   </li>
 {% endfor %}
 </ul>
+<br><br>

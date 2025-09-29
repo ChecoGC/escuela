@@ -7,7 +7,12 @@ class EstudianteForm(forms.ModelForm):
         model = Estudiante
         fields = ["nombre", "matricula"]
 
-# Widget personalizado para permitir múltiples archivos
+
+class DocumentoForm(forms.ModelForm):
+    class Meta:
+        model = Documento
+        fields = ["archivo"]  
+
 class MultiFileInput(forms.ClearableFileInput):
     allow_multiple_selected = True
 
