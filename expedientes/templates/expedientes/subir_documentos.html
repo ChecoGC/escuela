@@ -1,0 +1,11 @@
+<h2>Subir Documentos para {{ estudiante.nombre }}</h2>
+
+{% if error %}
+  <p style="color:red;">{{ error }}</p>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="file" name="archivos" multiple>
+  <button type="submit">Subir</button>
+</form>

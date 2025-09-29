@@ -6,4 +6,5 @@ urlpatterns = [
     path("nuevo/", EstudianteCreateView.as_view(), name="expediente_create"),
     path("<int:pk>/", EstudianteDetailView.as_view(), name="expediente_detail"),
     path("<int:pk>/subir/", subir_documentos, name="subir_documentos"),
+    
 ]
